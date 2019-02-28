@@ -17,6 +17,26 @@ class LoginViewController: UIViewController, LoginDisplayLogic {
     var interactor: LoginBusinessLogic?
     var router: (LoginRouterLogic & AccountDataPassing)?
     
+    //MARK: Lifecycle
+    
+    override func viewDidLoad() {
+        super .viewDidLoad()
+        setup()
+    }
+    
+    private func setup(){
+        let vc = self
+        let presenter = LoginPresenter()
+        let interactor = LoginInteractor()
+        let router = LoginRouter()
+        vc.interactor = interactor
+        vc.router = router
+        interactor.presenter = presenter
+        router.view = vc
+        router.dataStore = interactor
+        
+    }
+    
     func onLoginSuccess() {
         router?.openEntriesScene()
     }

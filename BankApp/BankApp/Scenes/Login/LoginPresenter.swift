@@ -22,10 +22,10 @@ class LoginPresenter: LoginPresentationLogic {
     }
     
     func presentError(message: String) {
-        
+        view.showMessageError(message: message)
     }
     
     func loginSuccess() {
-        
+        view.onLoginSuccess()
     }
 }
